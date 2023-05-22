@@ -1,10 +1,54 @@
 .ConsentManager {
-  width: 50vw;
-  height: 50vh;
   background: white;
-  overflow: scroll;
+  height: 50vh;
   margin: 10% 25% 0 25%;
-  position: absolute;
-  z-index: 1000000;
+  overflow: scroll;
   padding: 2%;
+  position: absolute;
+  width: 50vw;
+  z-index: 1000000;
+}
+
+.blue-button {
+  background-color: lightBlue;
+  color: white;
+  padding: 10px 20px;
+}
+
+.close-icon {
+  margin-left: auto;
+}
+
+.header {
+  justify-content: space-between;
+}
+
+h2 {
+  font-size: calc(40px + 2vmin);
+}
+
+.blue-button,
+.centered,
+.container,
+.content,
+.header {
+  align-items: center;
+  display: flex;
+}
+
+.content {
+  margin-left: 8px; /* Adjust the margin as needed */
+}
+
+.info-icon {
+  margin-left: 4px; /* Adjust the margin as needed */
+  color: grey;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.centered {
+  justify-content: center;
 }
