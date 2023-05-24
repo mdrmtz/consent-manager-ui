@@ -17,8 +17,8 @@ const setupConsentManagerUI = async (): Promise<void> => {
     console.log('Consent Manager UI config:', config);
 
     // TODO: Setup your consent manager UI DOM here
-    const App: React.FC = () => {
-        const sections = config.body.split('\n');
+    const ConsentManagerUI: React.FC = () => {
+        const sections = config.body.split('\n') || [];
         const purposeTypes = airgap.getPurposeTypes();
         const configurableOptions = Object.entries(purposeTypes).filter(([key, value]) => value.configurable);
         const essentials = Object.entries(purposeTypes).filter(([key, value]) => value.essential);
@@ -86,14 +86,13 @@ const setupConsentManagerUI = async (): Promise<void> => {
                 </section>
             </section>
         );
-
     };
 
     root = document.createElement('div');
     root.className = 'ConsentManager';
     ReactDOM.render(
         <React.StrictMode>
-            <App/>
+            <ConsentManagerUI />
         </React.StrictMode>,
         root
     );
@@ -117,6 +116,4 @@ export const showConsentManager = async () => {
         await setupConsentManagerUI();
     }
     await showConsentManagerUI();
-
-
 };
