@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+/*import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import type {TranscendAPI} from './@types/airgap.js';
-import Dialog from "./components/dialog/dialog.component";
+import Dialog from "./ui/dialog/dialog.component";
 import {consentManagerConfigDefaults} from "./ui/config";
-import EssentialList from "./components/essential-list/essential-list.component";
+import EssentialList from "./ui/essential-list/essential-list.component";
 
 const App: React.FC = () => {
     let onButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -49,6 +49,51 @@ const App: React.FC = () => {
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
             </header>
+        </div>
+    );
+};
+
+export default App;
+*/
+import React from 'react';
+import transcend from './transcend';
+import ConsentManager from "./ui/consent-manager/ConsentManager";
+
+const App = () => {
+
+    const purposeTypes = transcend.getPurposeTypes(); // Fetch purpose types from Transcend Consent Manager
+    const initialConsent = transcend.getConsent(); // Fetch initial consent from Transcend Consent Manager
+
+    const handleAcceptAll = () => {
+        // Logic to handle 'Accept All' button click
+        transcend.optIn(); // Update consent in Transcend Consent Manager
+    };
+
+    const handleDenyAll = () => {
+        // Logic to handle 'Deny All' button click
+        transcend.optOut(); // Update consent in Transcend Consent Manager
+    };
+
+    const handlePurposeToggle = (updatedConsent) => {
+        // Logic to handle toggling of a purpose (accept/deny)
+        transcend.setConsent(updatedConsent); // Update consent in Transcend Consent Manager
+    };
+
+    const showConsentManager = () => {
+        transcend.showConsentManager(); // Show the consent manager UI
+    };
+
+    return (
+        <div>
+            <h1>My App</h1>
+            <button onClick={showConsentManager}>Open Consent Manager</button>
+            <ConsentManager
+                purposeTypes={purposeTypes}
+                initialConsent={initialConsent}
+                onAcceptAll={handleAcceptAll}
+                onDenyAll={handleDenyAll}
+                onPurposeToggle={handlePurposeToggle}
+            />
         </div>
     );
 };
